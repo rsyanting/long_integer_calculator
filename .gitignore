@@ -7,3 +7,4 @@ bin/Debug/work_long_int_caculate.exe
 *.exe
 *.cbp
 *.depend
+*.layout
