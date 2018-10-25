@@ -4,3 +4,6 @@ work_long_int_caculate.depend
 work_long_int_caculate.layout
 obj/Debug/main.o
 bin/Debug/work_long_int_caculate.exe
+*.exe
+*.cbp
+*.depend

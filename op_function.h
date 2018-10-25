@@ -1,17 +1,17 @@
 #include "big_num_op.h"
 
-//³õÊ¼»¯´øÍ·½áµãµÄË«ÏòÑ­»·Á´±í
+//åˆå§‹åŒ–å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨
 void InitList(DblList &first){
-    first=(DblNode *)malloc(sizeof(DblNode));  //´´½¨Í·½áµã
+    first=(DblNode *)malloc(sizeof(DblNode));  //åˆ›å»ºå¤´ç»“ç‚¹
     if(!first){
-        printf("\nÄÚ´æ·ÖÅäÊ§°Ü£¡\n");
+        printf("\nå†…å­˜åˆ†é…å¤±è´¥ï¼\n");
         exit(1);
     }
-    first->data=0;  //Í·½áµã´æ´¢¸Ã³¤ÕûÊıµÄ×ÜÎ»Êı£¬³õÊ¼»¯Îª0
+    first->data=0;  //å¤´ç»“ç‚¹å­˜å‚¨è¯¥é•¿æ•´æ•°çš„æ€»ä½æ•°ï¼Œåˆå§‹åŒ–ä¸º0
     first->prior=first->next=first;
 }
 
-//Ïú»ÙË«Ñ­»·Á´±í£¨Ïú»ÙÍ·½Úµã£©
+//é”€æ¯åŒå¾ªç¯é“¾è¡¨ï¼ˆé”€æ¯å¤´èŠ‚ç‚¹ï¼‰
 void DestroyList(DblList &first){
     DblList q,p=first->next;
     while (p!=first){
@@ -22,7 +22,7 @@ void DestroyList(DblList &first){
     free(first);
 }
 
-//Çå¿Õ´øÍ·½áµãµÄË«Ñ­»·Á´±í£¨±£ÁôÍ·½áµã£©
+//æ¸…ç©ºå¸¦å¤´ç»“ç‚¹çš„åŒå¾ªç¯é“¾è¡¨ï¼ˆä¿ç•™å¤´ç»“ç‚¹ï¼‰
 void ClearList(DblList &first){
     DblList q,p=first->next;
     while (p!=first){
@@ -34,7 +34,7 @@ void ClearList(DblList &first){
     first->prior=first->next=first;
 }
 
-//¼ÆËã´øÍ·½áµãµÄË«ÏòÑ­»·Á´±íµÄ³¤¶È
+//è®¡ç®—å¸¦å¤´ç»“ç‚¹çš„åŒå‘å¾ªç¯é“¾è¡¨çš„é•¿åº¦
 int ListLength(DblList first){
     DblList p=first->next;
     int count=0;
@@ -45,13 +45,13 @@ int ListLength(DblList first){
     return count;
 }
 
-//²âÊÔÓÃº¯Êı
-//±éÀúÑ­»·Á´±í
+//æµ‹è¯•ç”¨å‡½æ•°
+//éå†å¾ªç¯é“¾è¡¨
 void TravelList(DblList first){
     printf("\n===========================TravelList_Testing============================\n");
     DblList p=first->next;
     while (p!=first){
-        //×¢Òâ´Ë´¦µÄÊä³ö¸ñÊ½ÎÊÌâ
+        //æ³¨æ„æ­¤å¤„çš„è¾“å‡ºæ ¼å¼é—®é¢˜
         if(p->next==first)
             printf("%4d",p->data);
         else
@@ -64,32 +64,32 @@ void TravelList(DblList first){
     if(getch())return;
 }
 
-//°´¸ñÊ½Êä³öÑ­»·Á´±í
+//æŒ‰æ ¼å¼è¾“å‡ºå¾ªç¯é“¾è¡¨
 void PrtList(DblList first){
     printf("\n==================================================================\n");
     DblList p=first->next;
-    if (p->data==0) ;   //ÌØÊâÇé¿öÖ»´æÔÚÓÚÊı×Ö"0"
+    if (p->data==0) ;   //ç‰¹æ®Šæƒ…å†µåªå­˜åœ¨äºæ•°å­—"0"
     else if(first->data<0) printf("-");
     else if (first->data>0) printf("+");
     int flag_is_first_node=0;
     while (p!=first){
-        if(ListLength(first)==1 && flag_is_first_node==0){//³¤¶ÈÎª1Ê±£¬Ö±½ÓÊä³ö¼´¿É
+        if(ListLength(first)==1 && flag_is_first_node==0){//é•¿åº¦ä¸º1æ—¶ï¼Œç›´æ¥è¾“å‡ºå³å¯
             printf("%d",p->data);
             flag_is_first_node++;
             p=p->next;
             continue;
         }
         else if (flag_is_first_node==0){
-            printf("%d,",p->data);//½Úµã³¤¶È³¬¹ı1£¬ĞèÒªÊä³öÒ»¸ö¡°,¡±
+            printf("%d,",p->data);//èŠ‚ç‚¹é•¿åº¦è¶…è¿‡1ï¼Œéœ€è¦è¾“å‡ºä¸€ä¸ªâ€œ,â€
             flag_is_first_node++;
-            p=p->next;//½ÚµãÖ¸ÕëºóÒÆ
-            continue;//Ìø¹ıÏÂÃæµÄÑ­»·
+            p=p->next;//èŠ‚ç‚¹æŒ‡é’ˆåç§»
+            continue;//è·³è¿‡ä¸‹é¢çš„å¾ªç¯
         }
-        else if(p->data==0){//ÌØÅĞ£ºÎª¡°0¡±Ê±£¬Ö±½ÓÊä³öÊı×Ö¡°0¡±
+        else if(p->data==0){//ç‰¹åˆ¤ï¼šä¸ºâ€œ0â€æ—¶ï¼Œç›´æ¥è¾“å‡ºæ•°å­—â€œ0â€
             printf("0");
-            break;//Ö±½ÓÌø³öÑ­»·
+            break;//ç›´æ¥è·³å‡ºå¾ªç¯
         }
-        if(p->next==first && flag_is_first_node!=0){ //×¢Òâ´Ë´¦µÄÊä³ö¸ñÊ½ÎÊÌâ
+        if(p->next==first && flag_is_first_node!=0){ //æ³¨æ„æ­¤å¤„çš„è¾“å‡ºæ ¼å¼é—®é¢˜
             if(p->data>=1000)printf("%4d",p->data);
             if(p->data<1000 && p->data>=100)printf("0%d",p->data);
             if(p->data<100 && p->data>=10)printf("00%d",p->data);
@@ -104,52 +104,52 @@ void PrtList(DblList first){
 
         p=p->next;
     }
-    printf(";\t¸Ã³¤ÕûÊıÓĞ: %d¸ö½Úµã\n",abs(first->data));
+    printf(";\tè¯¥é•¿æ•´æ•°æœ‰: %dä¸ªèŠ‚ç‚¹\n",abs(first->data));
     if(getch())return;
 }
 
-// ºËĞÄ´úÂë
-//´æ´¢ÊäÈëµÄ³¤ÕûÊı
+// æ ¸å¿ƒä»£ç 
+//å­˜å‚¨è¾“å…¥çš„é•¿æ•´æ•°
 void InputInteger(DblList &first,DblList &second){
-    printf("Çë×¢ÒâÄúµÄÊäÈë¸ñÊ½£º(Ìí¼Ó\";\"½áÊøÊäÈë)\n");
+    printf("è¯·æ³¨æ„æ‚¨çš„è¾“å…¥æ ¼å¼ï¼š(æ·»åŠ \";\"ç»“æŸè¾“å…¥)\n");
     char str[3][8]={"1","2"};
-    DblList assist; //¸¨ÖúÁ´±í
+    DblList assist; //è¾…åŠ©é“¾è¡¨
     for (int i = 0; i < 2; ++i) {
         if(i==0)assist=first;
         else assist=second;
-        printf("ÇëÊäÈëµÚ %s ¸ö³¤ÕûÊı£º ",str[i]);
+        printf("è¯·è¾“å…¥ç¬¬ %s ä¸ªé•¿æ•´æ•°ï¼š ",str[i]);
         DblList newdnode,p;
         int temp,flag=1;
         char ch;
         scanf("%d",&temp);
-        if(temp<0){  //¶ÁÈ¡µÚÒ»¸ö½áµãÊı¾İ£¬´¦ÀíÕı¸ºÊı£¬´æ´¢µÄ³¤ÕûÊıµÄÕı¸ºÓëÍ·½áµãdataµÄÕı¸ºÒ»ÖÂ
+        if(temp<0){  //è¯»å–ç¬¬ä¸€ä¸ªç»“ç‚¹æ•°æ®ï¼Œå¤„ç†æ­£è´Ÿæ•°ï¼Œå­˜å‚¨çš„é•¿æ•´æ•°çš„æ­£è´Ÿä¸å¤´ç»“ç‚¹dataçš„æ­£è´Ÿä¸€è‡´
             assist->data--;
             flag=0;
         }
         else assist->data++;
-        //´´½¨µÚÒ»¸ö½áµã²¢²åÈëÁ´Î²
+        //åˆ›å»ºç¬¬ä¸€ä¸ªç»“ç‚¹å¹¶æ’å…¥é“¾å°¾
         newdnode=(DblNode *)malloc(sizeof(DblNode));
-        newdnode->data=abs(temp);  //½áµãÊıÖµÎªÕı£¬·ûºÅÎ»´æÓÚÍ·½áµã£¬ÓëÍ·½áµãdataÓòµÄÕı¸ºÒ»ÖÂ
+        newdnode->data=abs(temp);  //ç»“ç‚¹æ•°å€¼ä¸ºæ­£ï¼Œç¬¦å·ä½å­˜äºå¤´ç»“ç‚¹ï¼Œä¸å¤´ç»“ç‚¹dataåŸŸçš„æ­£è´Ÿä¸€è‡´
         newdnode->prior=assist;
         assist->next=newdnode;
         newdnode->next=assist;
         assist->prior=newdnode;
 
-        p=newdnode;  //pÎªÁ´Î²½áµã
+        p=newdnode;  //pä¸ºé“¾å°¾ç»“ç‚¹
 
-        scanf("%c",&ch);  //ÅĞ¶ÏÊäÈëÊÇ·ñ½áÊø
+        scanf("%c",&ch);  //åˆ¤æ–­è¾“å…¥æ˜¯å¦ç»“æŸ
         if(ch==';')continue;
-        while (scanf("%d",&temp)){  //¶ÁÈ¡µÚ¶ş¸ö½áµãµ½×îºóÒ»¸ö½áµã
-            newdnode=(DblNode *)malloc(sizeof(DblNode));  //´´½¨ĞÂ½áµã²¢²åÈëÁ´Î²
+        while (scanf("%d",&temp)){  //è¯»å–ç¬¬äºŒä¸ªç»“ç‚¹åˆ°æœ€åä¸€ä¸ªç»“ç‚¹
+            newdnode=(DblNode *)malloc(sizeof(DblNode));  //åˆ›å»ºæ–°ç»“ç‚¹å¹¶æ’å…¥é“¾å°¾
             newdnode->data=temp;
             newdnode->prior=p;
             p->next=newdnode;
             newdnode->next=assist;
             assist->prior=newdnode;
 
-            if(flag)assist->data++;  //¸üĞÂÁ´µÄ³¤¶È
+            if(flag)assist->data++;  //æ›´æ–°é“¾çš„é•¿åº¦
             else assist->data--;
-            p=newdnode;  //Ê¹pÖ¸ÏòÁ´Î²
+            p=newdnode;  //ä½¿pæŒ‡å‘é“¾å°¾
             scanf("%c",&ch);
             if(ch==';')break;
             else if(ch==',')continue;
@@ -164,8 +164,8 @@ void InputInteger(DblList &first,DblList &second){
     return;
 }
 
-//Í·½áµãµÄÏÂÒ»¸öÎ»ÖÃ²åÈëĞÂ½áµã
-//p3:Ö¸Ïòresultµ±Ç°ÔËËã½áµã(³õÊ¼»¯ÎªÁ´Î²½áµã)
+//å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªä½ç½®æ’å…¥æ–°ç»“ç‚¹
+//p3:æŒ‡å‘resultå½“å‰è¿ç®—ç»“ç‚¹(åˆå§‹åŒ–ä¸ºé“¾å°¾ç»“ç‚¹)
 void newdnodeInset(DblList &p3,DblList &newdnode,DblList &result){
     p3->prior=newdnode;
     result->next=newdnode;
@@ -174,7 +174,7 @@ void newdnodeInset(DblList &p3,DblList &newdnode,DblList &result){
     p3=newdnode;
 }
 
-//³õÊ¼»¯Á´±íÊıÖµÎª 0
+//åˆå§‹åŒ–é“¾è¡¨æ•°å€¼ä¸º 0
 void InitSpecial(DblList &first){
     DblList newdnode=(DblNode *)malloc(sizeof(DblNode));
     newdnode->data=0;
@@ -183,7 +183,7 @@ void InitSpecial(DblList &first){
     first->data=1;
 }
 
-//¼Ó·¨½øÎ»´¦Àí
+//åŠ æ³•è¿›ä½å¤„ç†
 void judgeAdd(int temp,int &k,DblList &newdnode){
     if(temp/10000==0){
         newdnode->data=temp;
@@ -196,78 +196,78 @@ void judgeAdd(int temp,int &k,DblList &newdnode){
     }
 }
 
-//¼Ó·¨
+//åŠ æ³•
 void addition(DblList &first,DblList &second,DblList &result){
     int len1=abs(first->data),len2=abs(second->data);
     int len=max(len1,len2);
-    int smb1=first->data/abs(first->data),smb2=second->data/abs(second->data);  //È¡·ûºÅÎ»£¨ÅĞ¶ÏÕı¸º£©
-    //p1:Ö¸Ïòfirstµ±Ç°ÔËËã½áµã(³õÊ¼»¯ÎªÁ´Î²½áµã)£¬p2:Ö¸Ïòsecondµ±Ç°ÔËËã½áµã(³õÊ¼»¯ÎªÁ´Î²½áµã)
-    DblList newdnode,p1=first->prior,p2=second->prior,p3=result;  //p3:Ö¸Ïòresultµ±Ç°ÔËËã½áµã(³õÊ¼»¯ÎªÁ´Î²½áµã)
+    int smb1=first->data/abs(first->data),smb2=second->data/abs(second->data);  //å–ç¬¦å·ä½ï¼ˆåˆ¤æ–­æ­£è´Ÿï¼‰
+    //p1:æŒ‡å‘firstå½“å‰è¿ç®—ç»“ç‚¹(åˆå§‹åŒ–ä¸ºé“¾å°¾ç»“ç‚¹)ï¼Œp2:æŒ‡å‘secondå½“å‰è¿ç®—ç»“ç‚¹(åˆå§‹åŒ–ä¸ºé“¾å°¾ç»“ç‚¹)
+    DblList newdnode,p1=first->prior,p2=second->prior,p3=result;  //p3:æŒ‡å‘resultå½“å‰è¿ç®—ç»“ç‚¹(åˆå§‹åŒ–ä¸ºé“¾å°¾ç»“ç‚¹)
 
-    if(smb1+smb2!=0){  //Á½Êı¶¼ÎªÕıµÄÇé¿ö »ò Á½Êı¶¼Îª¸ºµÄÇé¿ö£¨¸ºµÄÇé¿ö¿ÉÒÔ×ª»»ÎªÕıµÄÇé¿ö¼ÆËã£©
-        int k=0,temp,i;  //k:¼ÇÂ¼½øÎ»  temp:´¢´æ¼ÆËãµÄÁÙÊ±½á¹û
-        for (i = 0; i < len; i++) {  //´Ó×îµÍÎ»¿ªÊ¼¼ÆËã£¨¼´´ÓÁ´Î²¿ªÊ¼ÏòÇ°Çó¼Ó£©
+    if(smb1+smb2!=0){  //ä¸¤æ•°éƒ½ä¸ºæ­£çš„æƒ…å†µ æˆ– ä¸¤æ•°éƒ½ä¸ºè´Ÿçš„æƒ…å†µï¼ˆè´Ÿçš„æƒ…å†µå¯ä»¥è½¬æ¢ä¸ºæ­£çš„æƒ…å†µè®¡ç®—ï¼‰
+        int k=0,temp,i;  //k:è®°å½•è¿›ä½  temp:å‚¨å­˜è®¡ç®—çš„ä¸´æ—¶ç»“æœ
+        for (i = 0; i < len; i++) {  //ä»æœ€ä½ä½å¼€å§‹è®¡ç®—ï¼ˆå³ä»é“¾å°¾å¼€å§‹å‘å‰æ±‚åŠ ï¼‰
             newdnode=(DblNode *)malloc(sizeof(DblNode));
-            if(p1!=first && p2!=second){  //Èç¹ûÁ½ÌõÁ´¾ùÎ´¼ÆËãµ½Í·½áµã
+            if(p1!=first && p2!=second){  //å¦‚æœä¸¤æ¡é“¾å‡æœªè®¡ç®—åˆ°å¤´ç»“ç‚¹
                 temp=p1->data+p2->data+k;
                 judgeAdd(temp,k,newdnode);
-                p1=p1->prior;   //Ê¹Ö¸ÕëÖ¸ÏòÏÂÒ»¸öÒª¼ÆËãµÄ½áµã£¨Ö¸Ïò¸ßÎ»£©
-                p2=p2->prior;   //Ê¹Ö¸ÕëÖ¸ÏòÏÂÒ»¸öÒª¼ÆËãµÄ½áµã£¨Ö¸Ïò¸ßÎ»£©
+                p1=p1->prior;   //ä½¿æŒ‡é’ˆæŒ‡å‘ä¸‹ä¸€ä¸ªè¦è®¡ç®—çš„ç»“ç‚¹ï¼ˆæŒ‡å‘é«˜ä½ï¼‰
+                p2=p2->prior;   //ä½¿æŒ‡é’ˆæŒ‡å‘ä¸‹ä¸€ä¸ªè¦è®¡ç®—çš„ç»“ç‚¹ï¼ˆæŒ‡å‘é«˜ä½ï¼‰
             }
-            else if(p1!=first && p2==second){  //Èç¹ûsecondÁ´ÒÑËãµ½Í·½áµã£¬¶øfirstÎ´µ½
+            else if(p1!=first && p2==second){  //å¦‚æœsecondé“¾å·²ç®—åˆ°å¤´ç»“ç‚¹ï¼Œè€Œfirstæœªåˆ°
                 temp=p1->data+k;
                 judgeAdd(temp,k,newdnode);
-                p1=p1->prior;  //Ê¹Ö¸ÕëÖ¸ÏòÏÂÒ»¸öÒª¼ÆËãµÄ½áµã£¨Ö¸Ïò¸ßÎ»£©
+                p1=p1->prior;  //ä½¿æŒ‡é’ˆæŒ‡å‘ä¸‹ä¸€ä¸ªè¦è®¡ç®—çš„ç»“ç‚¹ï¼ˆæŒ‡å‘é«˜ä½ï¼‰
             }
-            else if(p1==first && p2!=second){  //Èç¹ûfirstÁ´ÒÑËãµ½Í·½áµã£¬¶øsecondÎ´µ½
+            else if(p1==first && p2!=second){  //å¦‚æœfirsté“¾å·²ç®—åˆ°å¤´ç»“ç‚¹ï¼Œè€Œsecondæœªåˆ°
                 temp=p2->data+k;
                 judgeAdd(temp,k,newdnode);
-                p2=p2->prior;   //Ê¹Ö¸ÕëÖ¸ÏòÏÂÒ»¸öÒª¼ÆËãµÄ½áµã£¨Ö¸Ïò¸ßÎ»£©
+                p2=p2->prior;   //ä½¿æŒ‡é’ˆæŒ‡å‘ä¸‹ä¸€ä¸ªè¦è®¡ç®—çš„ç»“ç‚¹ï¼ˆæŒ‡å‘é«˜ä½ï¼‰
             }
-            newdnodeInset(p3,newdnode,result);  //Í·½áµãµÄÏÂÒ»¸öÎ»ÖÃ²åÈëĞÂ½áµã
+            newdnodeInset(p3,newdnode,result);  //å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªä½ç½®æ’å…¥æ–°ç»“ç‚¹
         }
-        while(k){  //´¦Àí×î¸ßÎ»¼ÆËãĞèÒª½øÎ»µÄÇé¿ö
+        while(k){  //å¤„ç†æœ€é«˜ä½è®¡ç®—éœ€è¦è¿›ä½çš„æƒ…å†µ
             newdnode=(DblNode *)malloc(sizeof(DblNode));
             i++;
             temp=k;
-            judgeAdd(temp,k,newdnode);  //ÅĞ¶ÏÊÇ·ñĞèÒª½øÎ»
-            newdnodeInset(p3,newdnode,result);  //Í·½áµãµÄÏÂÒ»¸öÎ»ÖÃ²åÈëĞÂ½áµã
+            judgeAdd(temp,k,newdnode);  //åˆ¤æ–­æ˜¯å¦éœ€è¦è¿›ä½
+            newdnodeInset(p3,newdnode,result);  //å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªä½ç½®æ’å…¥æ–°ç»“ç‚¹
         }
-        //Á½ÊıÎªÕıµÄÇé¿ö
-        if(smb1+smb2>0)result->data=i; //´¢´æÁ´±í³¤¶È£¨ÊıÎ»×ÜÊı£©,½á¹ûµÄÕı¸ºÓë¸ÃÖµÒ»ÖÂ
-        //Á½ÊıÎª¸ºµÄÇé¿ö
-        if(smb1+smb2<0)result->data=-i;  //´¢´æÁ´±í³¤¶È£¨ÊıÎ»×ÜÊı£©,½á¹ûµÄÕı¸ºÓë¸ÃÖµÒ»ÖÂ
+        //ä¸¤æ•°ä¸ºæ­£çš„æƒ…å†µ
+        if(smb1+smb2>0)result->data=i; //å‚¨å­˜é“¾è¡¨é•¿åº¦ï¼ˆæ•°ä½æ€»æ•°ï¼‰,ç»“æœçš„æ­£è´Ÿä¸è¯¥å€¼ä¸€è‡´
+        //ä¸¤æ•°ä¸ºè´Ÿçš„æƒ…å†µ
+        if(smb1+smb2<0)result->data=-i;  //å‚¨å­˜é“¾è¡¨é•¿åº¦ï¼ˆæ•°ä½æ€»æ•°ï¼‰,ç»“æœçš„æ­£è´Ÿä¸è¯¥å€¼ä¸€è‡´
         return;
     }
 
-    if(smb1+smb2==0){  //Ò»ÕıÒ»¸ºµÄÇé¿ö£¬½»ÓÉ¼õ·¨º¯Êı½øĞĞ´¦Àí
-        if(smb1>0){  //firstÎªÕı
+    if(smb1+smb2==0){  //ä¸€æ­£ä¸€è´Ÿçš„æƒ…å†µï¼Œäº¤ç”±å‡æ³•å‡½æ•°è¿›è¡Œå¤„ç†
+        if(smb1>0){  //firstä¸ºæ­£
             second->data=abs(second->data);
             subtraction(first,second,result);
-            second->data=-second->data;  //»Ö¸´secondµÄ·ûºÅÎ»
+            second->data=-second->data;  //æ¢å¤secondçš„ç¬¦å·ä½
         }
         else{
             first->data=abs(first->data);
             subtraction(second,first,result);
-            first->data=-first->data;  //»Ö¸´firstµÄ·ûºÅÎ»
+            first->data=-first->data;  //æ¢å¤firstçš„ç¬¦å·ä½
         }
         return;
     }
 }
 
-//¼õ·¨½èÎ»´¦Àí
+//å‡æ³•å€Ÿä½å¤„ç†
 void judgeSub(int temp,int &k,DblList &newdnode){
-    if(temp>=0){  //²»ĞèÒª½èÎ»
+    if(temp>=0){  //ä¸éœ€è¦å€Ÿä½
         newdnode->data=temp;
         k=0;
     }
-    else{  //ĞèÒª½èÎ»
+    else{  //éœ€è¦å€Ÿä½
         newdnode->data=temp+10000;
         k=1;
     }
 }
 
-//±È½Ï³¤¶ÈÏàµÈµÄÁ½¸öÊı£¬ÄÄ¸ö½Ï´ó
+//æ¯”è¾ƒé•¿åº¦ç›¸ç­‰çš„ä¸¤ä¸ªæ•°ï¼Œå“ªä¸ªè¾ƒå¤§
 int cmpInteger(DblList first,DblList second){
     DblList p1=first->next,p2=second->next;
     while(p1!=first){
@@ -282,93 +282,93 @@ int cmpInteger(DblList first,DblList second){
     return 0;
 }
 
-//¼õ·¨½áµãÊıÖµÏà¼õ´¦Àí
-void subDnode(int len,DblList &first,DblList &second,DblList &result,int &i){  //º¯Êıµ÷ÓÃÊ±£¬fisrt´«ÈëÖµ±Èsecond´«Èë´ó
-    DblList newdnode,p1=first->prior,p2=second->prior,p3=result;  //firstºÍsecondµÄ¼ÆËã¾ù´ÓÁ´Î²½áµã¿ªÊ¼£¨¼´´Ó×îµÍÎ»¿ªÊ¼¼ÆËã£©
-    int temp,k=0;  //k:³õÊ¼½èÎ»Îª0
-    for (i = 0; i < len; i++) {  //Ñ­»·´ÎÊıÎªÁ½¸öÊıµÄ×î´ó³¤¶È
+//å‡æ³•ç»“ç‚¹æ•°å€¼ç›¸å‡å¤„ç†
+void subDnode(int len,DblList &first,DblList &second,DblList &result,int &i){  //å‡½æ•°è°ƒç”¨æ—¶ï¼Œfisrtä¼ å…¥å€¼æ¯”secondä¼ å…¥å¤§
+    DblList newdnode,p1=first->prior,p2=second->prior,p3=result;  //firstå’Œsecondçš„è®¡ç®—å‡ä»é“¾å°¾ç»“ç‚¹å¼€å§‹ï¼ˆå³ä»æœ€ä½ä½å¼€å§‹è®¡ç®—ï¼‰
+    int temp,k=0;  //k:åˆå§‹å€Ÿä½ä¸º0
+    for (i = 0; i < len; i++) {  //å¾ªç¯æ¬¡æ•°ä¸ºä¸¤ä¸ªæ•°çš„æœ€å¤§é•¿åº¦
         newdnode=(DblNode *)malloc(sizeof(DblNode));
-        if(p1!=first && p2!=second){  //Èç¹ûÁ½¸öÖ¸Õë¾ùÎ´µ½Í·½áµã
+        if(p1!=first && p2!=second){  //å¦‚æœä¸¤ä¸ªæŒ‡é’ˆå‡æœªåˆ°å¤´ç»“ç‚¹
             temp=p1->data-p2->data-k;
-            judgeSub(temp,k,newdnode);  //ÅĞ¶ÏÊÇ·ñĞèÒª½èÎ»£¬²¢ÇÒÎªĞÂ½áµã¸³Öµ
-            p1=p1->prior;  //Ê¹Ö¸ÕëÖ¸ÏòÏÂÒ»¸öÒª¼ÆËãµÄ½áµã£¨Ö¸Ïò¸ßÎ»£©
-            p2=p2->prior;  //Ê¹Ö¸ÕëÖ¸ÏòÏÂÒ»¸öÒª¼ÆËãµÄ½áµã£¨Ö¸Ïò¸ßÎ»£©
+            judgeSub(temp,k,newdnode);  //åˆ¤æ–­æ˜¯å¦éœ€è¦å€Ÿä½ï¼Œå¹¶ä¸”ä¸ºæ–°ç»“ç‚¹èµ‹å€¼
+            p1=p1->prior;  //ä½¿æŒ‡é’ˆæŒ‡å‘ä¸‹ä¸€ä¸ªè¦è®¡ç®—çš„ç»“ç‚¹ï¼ˆæŒ‡å‘é«˜ä½ï¼‰
+            p2=p2->prior;  //ä½¿æŒ‡é’ˆæŒ‡å‘ä¸‹ä¸€ä¸ªè¦è®¡ç®—çš„ç»“ç‚¹ï¼ˆæŒ‡å‘é«˜ä½ï¼‰
         }
-        else {  //Èç¹ûp2ÒÑµ½Í·½áµã£¬¶øp1Î´µ½Í·½áµã
+        else {  //å¦‚æœp2å·²åˆ°å¤´ç»“ç‚¹ï¼Œè€Œp1æœªåˆ°å¤´ç»“ç‚¹
             temp=p1->data-k;
             judgeSub(temp,k,newdnode);
             p1=p1->prior;
         }
-        //Í·½áµãµÄÏÂÒ»¸öÎ»ÖÃ²åÈëĞÂ½áµã
-        newdnodeInset(p3,newdnode,result);  //ÔÚ½á¹ûÁ´±íresultÖĞ²åÈë¼ÆËãµÃµ½µÄĞÂ½áµã
+        //å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªä½ç½®æ’å…¥æ–°ç»“ç‚¹
+        newdnodeInset(p3,newdnode,result);  //åœ¨ç»“æœé“¾è¡¨resultä¸­æ’å…¥è®¡ç®—å¾—åˆ°çš„æ–°ç»“ç‚¹
     }
 }
 
-//¼õ·¨
+//å‡æ³•
 void subtraction(DblList &first,DblList &second,DblList &result){
     int len1=abs(first->data),len2=abs(second->data);
-    int smb1=first->data/abs(first->data),smb2=second->data/abs(second->data);  //È¡·ûºÅÎ»£¨ÅĞ¶ÏÕı¸º£©
-    //p3:Ö¸Ïòresultµ±Ç°ÔËËã½áµã(³õÊ¼»¯ÎªÁ´Î²½áµã)
+    int smb1=first->data/abs(first->data),smb2=second->data/abs(second->data);  //å–ç¬¦å·ä½ï¼ˆåˆ¤æ–­æ­£è´Ÿï¼‰
+    //p3:æŒ‡å‘resultå½“å‰è¿ç®—ç»“ç‚¹(åˆå§‹åŒ–ä¸ºé“¾å°¾ç»“ç‚¹)
     DblList newdnode,p3=result;
-    if(smb1+smb2>0){  //Á½Êı¶¼ÎªÕıµÄÇé¿ö
-        int i,flag;  //flag:±ê¼Ç½á¹ûµÄÕı¸º; i:±ê¼Ç½á¹ûµÄÁ´±í³¤¶È
-        if(len1>len2){  //Èç¹ûµÚÒ»¸öÊıµÄ³¤¶È´óÓÚµÚ¶ş¸ö
-            flag=1;  //Ïà¼õ½á¹ûÎªÕı
-            subDnode(len1,first,second,result,i); //Á½ÊıÏà¼õ£¬½á¹û´æÓÚresultÖĞ
+    if(smb1+smb2>0){  //ä¸¤æ•°éƒ½ä¸ºæ­£çš„æƒ…å†µ
+        int i,flag;  //flag:æ ‡è®°ç»“æœçš„æ­£è´Ÿ; i:æ ‡è®°ç»“æœçš„é“¾è¡¨é•¿åº¦
+        if(len1>len2){  //å¦‚æœç¬¬ä¸€ä¸ªæ•°çš„é•¿åº¦å¤§äºç¬¬äºŒä¸ª
+            flag=1;  //ç›¸å‡ç»“æœä¸ºæ­£
+            subDnode(len1,first,second,result,i); //ä¸¤æ•°ç›¸å‡ï¼Œç»“æœå­˜äºresultä¸­
         }
-        if(len1<len2){  //Èç¹ûµÚ¶ş¸öÊı³¤¶È´óÓÚµÚÒ»¸ö
-            flag=-1;  //Ïà¼õ½á¹ûÎª¸º
-            subDnode(len2,second,first,result,i);  //Á½ÊıÏà¼õ£¬½á¹û´æÓÚresultÖĞ
+        if(len1<len2){  //å¦‚æœç¬¬äºŒä¸ªæ•°é•¿åº¦å¤§äºç¬¬ä¸€ä¸ª
+            flag=-1;  //ç›¸å‡ç»“æœä¸ºè´Ÿ
+            subDnode(len2,second,first,result,i);  //ä¸¤æ•°ç›¸å‡ï¼Œç»“æœå­˜äºresultä¸­
         }
-        if(len1==len2){  //Èç¹ûÁ½¸öÊıµÄ³¤¶ÈÏàµÈ£¬Ôò±È½ÏÄÄ¸öÊı¸ü´ó
-            if(cmpInteger(first,second)>0){  //Èç¹ûfirst>second
-                subDnode(len1,first,second,result,i); //µ÷ÓÃÊ±Ïò²ÎÊıfirst´«Èë½Ï´óÖµfirst
-                flag=1;  //Ïà¼õ½á¹ûÎªÕı
+        if(len1==len2){  //å¦‚æœä¸¤ä¸ªæ•°çš„é•¿åº¦ç›¸ç­‰ï¼Œåˆ™æ¯”è¾ƒå“ªä¸ªæ•°æ›´å¤§
+            if(cmpInteger(first,second)>0){  //å¦‚æœfirst>second
+                subDnode(len1,first,second,result,i); //è°ƒç”¨æ—¶å‘å‚æ•°firstä¼ å…¥è¾ƒå¤§å€¼first
+                flag=1;  //ç›¸å‡ç»“æœä¸ºæ­£
             }
-            if(cmpInteger(first,second)<0){  //Èç¹ûfirst<second
-                subDnode(len2,second,first,result,i);  //µ÷ÓÃÊ±Ïò²ÎÊıfirst´«Èë½Ï´óÖµsecond
-                flag=-1;  //Ïà¼õ½á¹ûÎª¸º
+            if(cmpInteger(first,second)<0){  //å¦‚æœfirst<second
+                subDnode(len2,second,first,result,i);  //è°ƒç”¨æ—¶å‘å‚æ•°firstä¼ å…¥è¾ƒå¤§å€¼second
+                flag=-1;  //ç›¸å‡ç»“æœä¸ºè´Ÿ
             }
-            if(cmpInteger(first,second)==0){  //Èç¹ûÁ½¸öÊıÏàµÈ
+            if(cmpInteger(first,second)==0){  //å¦‚æœä¸¤ä¸ªæ•°ç›¸ç­‰
                 newdnode=(DblNode *)malloc(sizeof(DblNode));
-                newdnode->data=0;  //Ïà¼õ½á¹ûÎª0£»
+                newdnode->data=0;  //ç›¸å‡ç»“æœä¸º0ï¼›
                 newdnodeInset(p3,newdnode,result);
-                flag=1;  //¼ÆËã½á¹ûÎªÕı
+                flag=1;  //è®¡ç®—ç»“æœä¸ºæ­£
                 i=1;
             }
         }
-        //´¦Àí¼ÆËã½á¹ûµÄÕı¸º¼°Á´±í³¤¶È
+        //å¤„ç†è®¡ç®—ç»“æœçš„æ­£è´ŸåŠé“¾è¡¨é•¿åº¦
         if(flag==1)result->data=i;
         else result->data=-i;
         return;
     }
-    if(smb1+smb2<0){  //Á½¸ö¶¼Îª¸ºµÄÇé¿ö£¬¿É×ª»»ÎªÁ½¸öÎªÕıÏà¼õµÄÇé¿ö
-        //×ª»»ÎªÁ½¸öÕıÊıÏà¼õ
+    if(smb1+smb2<0){  //ä¸¤ä¸ªéƒ½ä¸ºè´Ÿçš„æƒ…å†µï¼Œå¯è½¬æ¢ä¸ºä¸¤ä¸ªä¸ºæ­£ç›¸å‡çš„æƒ…å†µ
+        //è½¬æ¢ä¸ºä¸¤ä¸ªæ­£æ•°ç›¸å‡
         first->data=abs(first->data);
         second->data=abs(second->data);
-        subtraction(second,first,result); //µİ¹éµ÷ÓÃsubtractionº¯Êı´¦Àí
-        //»Ö¸´Á½¸öÊı·ûºÅÎ»µÄÕı¸ºÇé¿ö
+        subtraction(second,first,result); //é€’å½’è°ƒç”¨subtractionå‡½æ•°å¤„ç†
+        //æ¢å¤ä¸¤ä¸ªæ•°ç¬¦å·ä½çš„æ­£è´Ÿæƒ…å†µ
         first->data=-first->data;
         second->data=-second->data;
         return;
     }
-    if(smb1+smb2==0){  //Ò»ÕıÒ»¸º
-        if(first->data>0 && second->data<0){  //firstÎªÕısecondÎª¸ºµÄÇé¿ö
-            second->data=abs(second->data);  //×ª»»ÎªÁ½¸öÕıÊıÏà¼Ó
-            addition(first,second,result);  //½»ÓÉ¼Ó·¨º¯Êı½øĞĞ´¦Àí
-            second->data=-second->data;  //»Ö¸´Ô­ÊäÈëÊı¾İµÄ·ûºÅÎ»µÄÕı¸ºÇé¿ö
+    if(smb1+smb2==0){  //ä¸€æ­£ä¸€è´Ÿ
+        if(first->data>0 && second->data<0){  //firstä¸ºæ­£secondä¸ºè´Ÿçš„æƒ…å†µ
+            second->data=abs(second->data);  //è½¬æ¢ä¸ºä¸¤ä¸ªæ­£æ•°ç›¸åŠ 
+            addition(first,second,result);  //äº¤ç”±åŠ æ³•å‡½æ•°è¿›è¡Œå¤„ç†
+            second->data=-second->data;  //æ¢å¤åŸè¾“å…¥æ•°æ®çš„ç¬¦å·ä½çš„æ­£è´Ÿæƒ…å†µ
         }
-        if(first->data<0 && second->data>0){  //secondÎªÕıfirstÎª¸ºµÄÇé¿ö
-            first->data=abs(first->data); //×ª»»ÎªÁ½¸öÕıÊıÏà¼Ó
-            addition(first,second,result);  //½»ÓÉ¼Ó·¨º¯Êı½øĞĞ´¦Àí
-            first->data=-first->data;  //»Ö¸´Ô­ÊäÈëÊı¾İµÄ·ûºÅÎ»µÄÕı¸ºÇé¿ö
-            result->data=-result->data;  //Á½ÊıÏà¼õ½á¹ûÎª¸º
+        if(first->data<0 && second->data>0){  //secondä¸ºæ­£firstä¸ºè´Ÿçš„æƒ…å†µ
+            first->data=abs(first->data); //è½¬æ¢ä¸ºä¸¤ä¸ªæ­£æ•°ç›¸åŠ 
+            addition(first,second,result);  //äº¤ç”±åŠ æ³•å‡½æ•°è¿›è¡Œå¤„ç†
+            first->data=-first->data;  //æ¢å¤åŸè¾“å…¥æ•°æ®çš„ç¬¦å·ä½çš„æ­£è´Ÿæƒ…å†µ
+            result->data=-result->data;  //ä¸¤æ•°ç›¸å‡ç»“æœä¸ºè´Ÿ
         }
         return;
     }
 }
 
-//³Ë·¨½øÎ»´¦Àí
+//ä¹˜æ³•è¿›ä½å¤„ç†
 void judgeMultiply(int temp,int &k,DblList &newdnode){
     if(temp/10000==0){
         newdnode->data=temp;
@@ -380,12 +380,12 @@ void judgeMultiply(int temp,int &k,DblList &newdnode){
     }
 }
 
-//³Ë·¨½áµãÏà¼Ó´¦Àí
+//ä¹˜æ³•ç»“ç‚¹ç›¸åŠ å¤„ç†
 void mulDnode(DblList &result,DblList &assist,int t){
     DblList newdnode,p1=result,p2=assist->prior;
     int temp,k=0;
     while(t--)
-        p1=p1->prior;  //´¦ÀíÆğÊ¼Ïà¼ÓÎ»ÖÃ
+        p1=p1->prior;  //å¤„ç†èµ·å§‹ç›¸åŠ ä½ç½®
     while (p2!=assist){
         if(p1->prior!=result){
             temp=p1->prior->data+p2->data+k;
@@ -401,26 +401,26 @@ void mulDnode(DblList &result,DblList &assist,int t){
         }
         p2=p2->prior;
     }
-    while(k) {  //´¦Àí×î¸ßÎ»¼ÆËãĞèÒª½øÎ»µÄÇé¿ö
+    while(k) {  //å¤„ç†æœ€é«˜ä½è®¡ç®—éœ€è¦è¿›ä½çš„æƒ…å†µ
         newdnode = (DblNode *) malloc(sizeof(DblNode));
         temp = k;
-        judgeMultiply(temp, k, newdnode); //ÅĞ¶ÏÊÇ·ñĞèÒª½øÎ»
-        //Í·½áµãµÄÏÂÒ»¸öÎ»ÖÃ²åÈëĞÂ½áµã
+        judgeMultiply(temp, k, newdnode); //åˆ¤æ–­æ˜¯å¦éœ€è¦è¿›ä½
+        //å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªä½ç½®æ’å…¥æ–°ç»“ç‚¹
         newdnodeInset(p1, newdnode, result);
         result->data++;
     }
 }
 
-//³Ë·¨
+//ä¹˜æ³•
 void multiplication(DblList &first,DblList &second,DblList &result){
-    int smb1=first->data/abs(first->data),smb2=second->data/abs(second->data);  //È¡·ûºÅÎ»£¨ÅĞ¶ÏÕı¸º£©
+    int smb1=first->data/abs(first->data),smb2=second->data/abs(second->data);  //å–ç¬¦å·ä½ï¼ˆåˆ¤æ–­æ­£è´Ÿï¼‰
 
-    DblList assist;  //¸¨Öú¼ÆËãÁ´±í£¬´æ´¢ÁÙÊ±¼ÆËã½á¹û
-    InitList(assist);  //³õÊ¼»¯¸¨ÖúÁ´±í
-    InitSpecial(result); //³õÊ¼»¯resultÊıÖµÎª0£¬³¤¶ÈÎª1£»
+    DblList assist;  //è¾…åŠ©è®¡ç®—é“¾è¡¨ï¼Œå­˜å‚¨ä¸´æ—¶è®¡ç®—ç»“æœ
+    InitList(assist);  //åˆå§‹åŒ–è¾…åŠ©é“¾è¡¨
+    InitSpecial(result); //åˆå§‹åŒ–resultæ•°å€¼ä¸º0ï¼Œé•¿åº¦ä¸º1ï¼›
     DblList newdnode,p1,p2=second->prior,p4;
 
-    int temp,i=0,t; //temp:´¢´æÁÙÊ±½á¹û  t:´¦ÀíÆğÊ¼Ïà¼ÓÎ»ÖÃ
+    int temp,i=0,t; //temp:å‚¨å­˜ä¸´æ—¶ç»“æœ  t:å¤„ç†èµ·å§‹ç›¸åŠ ä½ç½®
     while(p2!=second){
         t=i++;
         int k=0;
@@ -432,15 +432,15 @@ void multiplication(DblList &first,DblList &second,DblList &result){
             judgeMultiply(temp,k,newdnode);
             newdnodeInset(p4,newdnode,assist);
 
-            assist->data++;  //Ã¿Ìí¼ÓÒ»¸öĞÂµÄ½áµã£¬¸¨ÖúÁ´±í³¤¶È+1
+            assist->data++;  //æ¯æ·»åŠ ä¸€ä¸ªæ–°çš„ç»“ç‚¹ï¼Œè¾…åŠ©é“¾è¡¨é•¿åº¦+1
             p1=p1->prior;
         }
         p2=p2->prior;
-        while(k){  //´¦Àí×î¸ßÎ»¼ÆËãĞèÒª½øÎ»µÄÇé¿ö
+        while(k){  //å¤„ç†æœ€é«˜ä½è®¡ç®—éœ€è¦è¿›ä½çš„æƒ…å†µ
             newdnode=(DblNode *)malloc(sizeof(DblNode));
             temp=k;
-            judgeMultiply(temp,k,newdnode); //ÅĞ¶ÏÊÇ·ñĞèÒª½øÎ»
-            //Í·½áµãµÄÏÂÒ»¸öÎ»ÖÃ²åÈëĞÂ½áµã
+            judgeMultiply(temp,k,newdnode); //åˆ¤æ–­æ˜¯å¦éœ€è¦è¿›ä½
+            //å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªä½ç½®æ’å…¥æ–°ç»“ç‚¹
             newdnodeInset(p4,newdnode,assist);
             assist->data++;
         }

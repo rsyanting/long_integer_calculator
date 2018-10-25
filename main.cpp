@@ -17,7 +17,7 @@ int main(){
             break;
         }
         if(op!='0'&&op>'3'){
-            printf("\n\nÊäÈëµÄ±àºÅÓĞÎó£¬ÇëºË¶ÔºóÔÙ´ÎÊäÈë£¡\n°´ÈÎÒâ¼ü¼ÌĞø¡­¡­");
+            printf("\n\nè¾“å…¥çš„ç¼–å·æœ‰è¯¯ï¼Œè¯·æ ¸å¯¹åå†æ¬¡è¾“å…¥ï¼\næŒ‰ä»»æ„é”®ç»§ç»­â€¦â€¦");
             getch();
             system("cls");
             prtMainUI();
@@ -27,12 +27,12 @@ int main(){
             case '1':
                 prtInputFormatUI(op);
                 InputInteger(first,second);
-                //TravelList(first); //testing ²âÊÔÊäÈëÊı¾İ
+                //TravelList(first); //testing æµ‹è¯•è¾“å…¥æ•°æ®
                 //TravelList(second);
                 PrtList(first);
                 PrtList(second);
                 addition(first,second,result);
-                printf("\n=============================ÔËËã½á¹û=============================");
+                printf("\n=============================è¿ç®—ç»“æœ=============================");
                 PrtList(result);
                 break;
             case '2':
@@ -41,7 +41,7 @@ int main(){
                 PrtList(first);
                 PrtList(second);
                 subtraction(first,second,result);
-                printf("\n=============================ÔËËã½á¹û==============================");
+                printf("\n=============================è¿ç®—ç»“æœ==============================");
                 PrtList(result);
                 break;
             case '3':
@@ -50,7 +50,7 @@ int main(){
                 PrtList(first);
                 PrtList(second);
                 multiplication(first,second,result);
-                printf("\n=============================ÔËËã½á¹û===============================");
+                printf("\n=============================è¿ç®—ç»“æœ===============================");
                 PrtList(result);
                 break;
 //            default:

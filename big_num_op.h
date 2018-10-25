@@ -10,7 +10,7 @@
 #include <algorithm>
 using namespace std;
 
-//¶¨Òå½áµã
+//å®šä¹‰ç»“ç‚¹
 typedef int ListData;
 typedef struct dnode{
     ListData data;
@@ -39,8 +39,8 @@ void mulDnode(DblList &result,DblList &assist,int t);
 void multiplication(DblList &first,DblList &second,DblList &result);
 
 //view.h
-void prtWelcomeUI();  //»¶Ó­½çÃæ
-void prtMainUI();  //ÓÃ»§½»»¥Ö÷½çÃæ
-void prtInputFormatUI(int op);  //Êä³öµ±Ç°Ö´ĞĞµÄÔËËã
+void prtWelcomeUI();  //æ¬¢è¿ç•Œé¢
+void prtMainUI();  //ç”¨æˆ·äº¤äº’ä¸»ç•Œé¢
+void prtInputFormatUI(int op);  //è¾“å‡ºå½“å‰æ‰§è¡Œçš„è¿ç®—
 
 #endif //BIG_NUM_BIG_NUM_OP_H
